@@ -12,6 +12,9 @@ const inter = Inter({
 export const metadata = {
   title: 'Favorite — Your Personal Archive of Art',
   description: 'A personal archive for your favorite movies, albums, books, podcasts, blogs, and ideas. Track, review, and curate the most inspiring media in the world.',
+  icons: {
+    icon: '/favoritestar.png',
+  },
 };
 
 export default function RootLayout({ children }) {
