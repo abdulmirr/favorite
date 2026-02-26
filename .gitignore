@@ -36,6 +36,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# reference/design files
+cosmos/
+shuttle.zip/
+Verci Fellowship_files/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

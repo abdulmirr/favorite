@@ -1,0 +1,78 @@
+.stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.star {
+    position: relative;
+    display: inline-block;
+    transition: transform 150ms ease;
+}
+
+.starSvg {
+    display: block;
+}
+
+.starOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.interactive {
+    cursor: pointer;
+}
+
+.interactive:hover {
+    transform: scale(1.1);
+}
+
+/* Sizes */
+.sm .star {
+    width: 16px;
+    height: 16px;
+}
+
+.sm .starSvg {
+    width: 16px;
+    height: 16px;
+}
+
+.md .star {
+    width: 20px;
+    height: 20px;
+}
+
+.md .starSvg {
+    width: 20px;
+    height: 20px;
+}
+
+.lg .star {
+    width: 24px;
+    height: 24px;
+}
+
+.lg .starSvg {
+    width: 24px;
+    height: 24px;
+}
+
+.xl .star {
+    width: 32px;
+    height: 32px;
+}
+
+.xl .starSvg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Rating text */
+.ratingText {
+    margin-left: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-weight: 500;
+}

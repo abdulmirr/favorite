@@ -1,0 +1,211 @@
+/* Cosmos-style auth page */
+.page {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: calc(-1 * var(--nav-height, 0px));
+}
+
+/* Left image panel */
+.imagePanel {
+    flex: 1;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.imagePanel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+}
+
+.slideshowImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.slideshowOut {
+    opacity: 0;
+}
+
+.slideshowImgNext {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.imagePanelOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0.2) 0%, rgba(13, 13, 13, 0.6) 100%);
+}
+
+.imagePanelContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-8);
+}
+
+.imagePanelContent h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    line-height: 1.3;
+    color: #fff;
+}
+
+/* Right form panel */
+.formPanel {
+    width: 480px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-10) var(--space-10);
+    background: var(--bg-primary);
+}
+
+.card {
+    width: 100%;
+    max-width: 360px;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.logoMark {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-8);
+    color: var(--text-primary);
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    margin-bottom: var(--space-2);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+/* Floating label field — Cosmos style */
+.field {
+    position: relative;
+}
+
+.field label {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    transition: all var(--transition-fast);
+}
+
+.field input {
+    width: 100%;
+    padding: 26px 16px 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.field input:focus {
+    border-color: var(--border-hover);
+}
+
+.field input::placeholder {
+    color: transparent;
+}
+
+.error {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    color: var(--danger);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-4);
+}
+
+.switch {
+    text-align: center;
+    margin-top: var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.switch a {
+    color: var(--text-primary);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.switch a:hover {
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .page {
+        flex-direction: column;
+    }
+
+    .imagePanel {
+        height: 200px;
+        flex: none;
+    }
+
+    .formPanel {
+        width: 100%;
+        flex: 1;
+        padding: var(--space-8) var(--space-6);
+    }
+}
+
+@media (max-width: 600px) {
+    .imagePanel {
+        display: none;
+    }
+}
+
+.noTransition {
+    transition: none !important;
+}
