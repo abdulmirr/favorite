@@ -26,6 +26,8 @@ export default function LogEntryPage() {
     const router = useRouter();
     const params = useParams();
 
+    useEffect(() => { document.title = `favorite/${params.username}`; }, [params.username]);
+
     const [category, setCategory] = useState('movie');
     const [title, setTitle] = useState('');
     const [creator, setCreator] = useState('');

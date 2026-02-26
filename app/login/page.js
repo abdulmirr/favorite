@@ -16,6 +16,8 @@ export default function LoginPage() {
     const { user, profile, signIn, loading: authLoading } = useAuth();
     const router = useRouter();
 
+    useEffect(() => { document.title = 'favorite/login'; }, []);
+
     // Redirect if already signed in
     useEffect(() => {
         if (!authLoading && user && profile) {

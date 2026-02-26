@@ -16,6 +16,8 @@ export default function SettingsPage() {
     const avatarInputRef = useRef(null);
     const bannerInputRef = useRef(null);
 
+    useEffect(() => { document.title = 'favorite/settings'; }, []);
+
     const [displayName, setDisplayName] = useState('');
     const [bio, setBio] = useState('');
     const [website, setWebsite] = useState('');

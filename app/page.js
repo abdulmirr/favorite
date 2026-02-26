@@ -230,6 +230,8 @@ export default function Home() {
   const { user, profile, loading } = useAuth();
   const router = useRouter();
 
+  useEffect(() => { document.title = 'favorite'; }, []);
+
   useEffect(() => {
     if (!loading && user && profile) {
       router.replace('/feed');

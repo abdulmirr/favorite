@@ -19,6 +19,8 @@ export default function SignUpPage() {
     const { user, profile, signUp, loading: authLoading } = useAuth();
     const router = useRouter();
 
+    useEffect(() => { document.title = 'favorite/signup'; }, []);
+
     // Redirect if already signed in
     useEffect(() => {
         if (!authLoading && user && profile) {

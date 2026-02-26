@@ -22,6 +22,8 @@ export default function EntryDetailPage() {
     const params = useParams();
     const router = useRouter();
     const { user } = useAuth();
+    useEffect(() => { document.title = `favorite/${params.username}`; }, [params.username]);
+
     const [entry, setEntry] = useState(null);
     const [profileUser, setProfileUser] = useState(null);
     const [loading, setLoading] = useState(true);

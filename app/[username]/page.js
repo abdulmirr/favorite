@@ -76,6 +76,8 @@ export default function ProfilePage() {
     const [loading, setLoading] = useState(true);
     const [categoryCounts, setCategoryCounts] = useState({});
 
+    useEffect(() => { document.title = `favorite/${params.username}`; }, [params.username]);
+
     const [viewMode, setViewMode] = useState('canvas');
     const [sortBy, setSortBy] = useState('date-desc');
 

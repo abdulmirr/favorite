@@ -18,6 +18,8 @@ export default function ForYouPage() {
     const { user, profile, loading: authLoading } = useAuth();
     const router = useRouter();
 
+    useEffect(() => { document.title = 'favorite/feed'; }, []);
+
     const [categories, setCategories] = useState([]);
     const [loadingRecs, setLoadingRecs] = useState(true);
     const [error, setError] = useState(null);

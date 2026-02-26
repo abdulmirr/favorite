@@ -32,6 +32,8 @@ export default function FollowingPage() {
     const [suggested, setSuggested] = useState([]);
     const [loadingFeed, setLoadingFeed] = useState(true);
 
+    useEffect(() => { document.title = 'favorite/following'; }, []);
+
     useEffect(() => {
         if (!loading && !user) {
             router.replace('/');
