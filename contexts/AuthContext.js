@@ -59,6 +59,14 @@ export function AuthProvider({ children }) {
         return { data, error };
     };
 
+    const resendConfirmation = async (email) => {
+        const { data, error } = await supabase.auth.resend({
+            type: 'signup',
+            email,
+        });
+        return { data, error };
+    };
+
     const signIn = async (email, password) => {
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
@@ -78,7 +86,7 @@ export function AuthProvider({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={{ user, profile, loading, signUp, signIn, signOut, fetchProfile }}>
+        <AuthContext.Provider value={{ user, profile, loading, signUp, signIn, signOut, resendConfirmation, fetchProfile }}>
             {children}
         </AuthContext.Provider>
     );

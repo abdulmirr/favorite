@@ -16,7 +16,9 @@ export default function SignUpPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
-    const { user, profile, signUp, loading: authLoading } = useAuth();
+    const { user, profile, signUp, resendConfirmation, loading: authLoading } = useAuth();
+    const [resending, setResending] = useState(false);
+    const [resendMsg, setResendMsg] = useState('');
     const router = useRouter();
 
     useEffect(() => { document.title = 'favorite/signup'; }, []);
@@ -43,11 +45,20 @@ export default function SignUpPage() {
         }
 
         setLoading(true);
-        const { error: signUpError } = await signUp(email, password, username.toLowerCase(), displayName);
+        const { data: signUpData, error: signUpError } = await signUp(email, password, username.toLowerCase(), displayName);
         if (signUpError) {
-            setError(signUpError.message);
+            if (signUpError.message.toLowerCase().includes('rate limit')) {
+                setError('Too many signup attempts right now. Please try again in a few minutes.');
+            } else {
+                setError(signUpError.message);
+            }
             setLoading(false);
         } else {
+            // If user already exists but is unconfirmed, signUp succeeds
+            // but doesn't resend the email — identities will be empty
+            if (signUpData?.user?.identities?.length === 0) {
+                await resendConfirmation(email);
+            }
             setEmailSent(true);
             setLoading(false);
         }
@@ -86,8 +97,35 @@ export default function SignUpPage() {
                             Go to Sign In
                         </Link>
                         <p className={styles.switch} style={{ marginTop: '16px' }}>
-                            Didn&apos;t get it? Check your spam folder.
+                            Didn&apos;t get it? Check your spam folder or{' '}
+                            <button
+                                onClick={async () => {
+                                    setResending(true);
+                                    setResendMsg('');
+                                    const { error } = await resendConfirmation(email);
+                                    setResending(false);
+                                    setResendMsg(error ? error.message : 'Email resent!');
+                                }}
+                                disabled={resending}
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
+                                    color: 'var(--accent)',
+                                    cursor: resending ? 'default' : 'pointer',
+                                    padding: 0,
+                                    font: 'inherit',
+                                    textDecoration: 'underline',
+                                    opacity: resending ? 0.5 : 1,
+                                }}
+                            >
+                                {resending ? 'Sending...' : 'resend it'}
+                            </button>
                         </p>
+                        {resendMsg && (
+                            <p style={{ marginTop: '8px', fontSize: '13px', color: resendMsg === 'Email resent!' ? 'var(--accent)' : 'var(--error)' }}>
+                                {resendMsg}
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
